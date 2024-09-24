@@ -2,12 +2,10 @@
   "compilerOptions": {
     "baseUrl": "./", // 절대 경로를 사용하기 위한 Base 디렉토리를 설정한다.
     "paths": {
-      "item/*": ["src/components/item/*"],
-      "page/*": ["src/components/page/*"],
-      "custom/*": ["src/components/custom/*"],
-      "public/*": ["public/*"],
-
-      "components/*": ["src/components/*"]
+      "page/*": ["src/page/*"],
+      "custom/*": ["src/utils/*"],
+      "components/*": ["src/components/*"],
+      "public/*": ["public/*"]
     }
   }
 }

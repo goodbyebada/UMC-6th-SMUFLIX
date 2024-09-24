@@ -5,7 +5,7 @@ import PopularPage from "page/PopularPage";
 import NowPlayingPage from "page/NowPlayingPage";
 import TopRatedPage from "page/TopRatedPage";
 import UpcomingPage from "page/UpcomingPage";
-import Navbar from "item/Navbar";
+import Navbar from "components/Navbar";
 import MovieDetailPage from "page/MovieDetailPage";
 import LoginPage from "page/LoginPage";
 

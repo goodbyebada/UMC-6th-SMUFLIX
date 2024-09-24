@@ -12,19 +12,15 @@ export default defineConfig({
     alias: [
       {
         find: "page",
-        replacement: path.resolve(__dirname, "./src/components/page/"),
+        replacement: path.resolve(__dirname, "./src/page/"),
       },
       {
         find: "public",
         replacement: path.resolve(__dirname, "./public"),
       },
       {
-        find: "item",
-        replacement: path.resolve(__dirname, "./src/components/item/"),
-      },
-      {
-        find: "custom",
-        replacement: path.resolve(__dirname, "./src/components/custom/"),
+        find: "utils",
+        replacement: path.resolve(__dirname, "./src/utils"),
       },
       {
         find: "components",
@@ -33,3 +29,4 @@ export default defineConfig({
     ],
   },
 });
+ 
