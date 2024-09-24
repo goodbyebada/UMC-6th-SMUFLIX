@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import { styled, keyframes } from "styled-components";
 
 import Info from "./Info";
 
@@ -20,16 +20,17 @@ export default function MoviewDetail({ elem }) {
   const makeStar = (vote_average) => {
     let count = Math.round(vote_average);
     let i = 0;
-
     let star = "";
-
     while (i < count) {
       count--;
       star += `⭐️`;
     }
-
     return star;
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   useEffect(() => {
     const options = {
@@ -97,11 +98,12 @@ export default function MoviewDetail({ elem }) {
         ""
       ) : (
         <CastContainer>
-          {castInfoList.map((elem) => {
+          {castInfoList.map((elem, key) => {
             const { profile_path, name, original_name } = elem;
 
             return (
               <Info
+                key={key}
                 profile_path={profile_path}
                 name={name}
                 original_name={original_name}
@@ -133,6 +135,15 @@ export default function MoviewDetail({ elem }) {
     </div>
   );
 }
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 const ImgContainer = styled.div`
   img {
@@ -169,6 +180,7 @@ const WrapperContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   padding: 10%;
+  animation: 2s ${fadeIn} ease-out;
 
   &::before {
     content: "";
