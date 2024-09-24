@@ -23,18 +23,20 @@ export default function MainPage({ isLoggedIn }) {
         Authorization: import.meta.env.VITE_TOKEN,
       },
     };
+
     fetch(
       `https://api.themoviedb.org/3/search/movie?query=${queryString}&include_adult=false&language=ko&page=1`,
       options
     )
       .then((response) => response.json())
-      .then((response) => {
-        setMovieList(response.results);
+      .then((data) => {
+        setMovieList(data.results);
         setLoading(false);
-
-        console.log(response.results);
       })
-      .catch((err) => console.error(err));
+      .catch((error) => {
+        console.error("Error fetching movie data:", error);
+        setLoading(false);
+      });
   };
 
   const onChange = (e) => {
@@ -49,16 +51,11 @@ export default function MainPage({ isLoggedIn }) {
     setEmpty(false);
   };
 
-  //검색 버튼 눌렀을시에만 검색하기 위해 미리 만들어놓음
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
-
   const queryString = useDebounce(text, 2000);
 
   //after Debounce
   useEffect(() => {
-    setLoading(false);
+    setLoading(true);
     searchData(queryString);
   }, [queryString]);
 
@@ -106,17 +103,16 @@ export default function MainPage({ isLoggedIn }) {
             : "로딩중.."
           : "환영합니다."}
       </Welcome>
-      <Search onSubmit={onSubmit}>
+      <Search onSubmit={(e) => e.preventDefault()}>
         <h2> Find your movies!</h2>
         <InputWrapper>
           <input onChange={onChange} value={text} />
-          <button>🔎</button>
         </InputWrapper>
 
         {empty ? (
           ""
         ) : loading ? (
-          <Notice>로딩중입니다.</Notice>
+          <Notice>검색중입니다.</Notice>
         ) : !movieList.length ? (
           <Notice>검색결과가 없습니다.</Notice>
         ) : (
