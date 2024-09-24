@@ -1,4 +1,4 @@
-import { storeToken } from "custom/token";
+import { storeToken } from "components/utils/token";
 
 /**
  * 리팩토링시 : fetchData class로 만들어 signupData 메소드 만드는것도 좋아보인다.
